@@ -1804,9 +1804,19 @@ interface VmSafe {
     function toBase64(string calldata data) external pure returns (string memory);
 }
 
+interface Terry {
+    /// Sets the value of a contract storage slot.
+    //#[cheatcode(group = Evm, safety = Unsafe)]
+    function terrySetStorageAt(address target, bytes32 slot, bytes32 value) external;
+
+    /// Gets a storage slot from an address.
+    //#[cheatcode(group = Evm, safety = Safe)]
+    function terryGetStorageAt(address target, bytes32 slot) external view returns (bytes32 data);
+}
+
 /// The `Vm` interface does allow manipulation of the EVM state. These are all intended to be used
 /// in tests, but it is not recommended to use these cheats in scripts.
-interface Vm is VmSafe {
+interface Vm is VmSafe, Terry {
     // ======== EVM ========
 
     /// Returns the identifier of the currently active fork. Reverts if no fork is currently active.
