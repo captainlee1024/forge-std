@@ -1809,9 +1809,19 @@ interface Terry {
     //#[cheatcode(group = Evm, safety = Unsafe)]
     function terrySetStorageAt(address target, bytes32 slot, bytes32 value) external;
 
+    /// (uint256 -> data)
+    function terrySetMappingStorageAt(address target, uint256 slot, uint256 key, bytes32 value) external;
+    /// (address -> data)
+    function terrySetMappingStorageAt(address target, uint256 slot, address key, bytes32 value) external;
     /// Gets a storage slot from an address.
     //#[cheatcode(group = Evm, safety = Safe)]
     function terryGetStorageAt(address target, bytes32 slot) external view returns (bytes32 data);
+
+    /// (uint256 -> data)
+    function terryGetMappingStorageAt(address target, uint256 slot, uint256 key) external view returns (bytes32 data);
+
+    /// (address -> data)
+    function terryGetMappingStorageAt(address target, uint256 slot, address key) external view returns (bytes32 data);
 }
 
 /// The `Vm` interface does allow manipulation of the EVM state. These are all intended to be used
